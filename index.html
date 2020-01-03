@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Effie's Black Jack</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="normalize.css" type='text/css'>
+    <link rel="stylesheet" href="style.css" type='text/css'>
+  </head>
+  <body>
+    <header>
+      <h1>Effie's Black Jack</h1>
+    </header>
+    
+    <!-- This will be the player input, the scoreboard, and the reset button -->
+    <div class='top'>
+      <form>
+        <input type="text" name="name" value="Enter Name">
+        <input type="submit" name="submit" id="submitbutton" value="Click Here">
+      </form>
+      <!-- <p>Players Name</p> -->
+      <div class='scoreboard'>
+        <div id='scoreBoard1'>Player One: 0</div>
+        <div id='scoreBoard2'>Dealer: 0</div>
+      </div>
+      <button id='reset-button' onclick='playAgain()''>Reset Score</button>
+    </div>
+
+    <!-- This will be where the deck of cards will be displayed and the buttons for turns-->
+    <div class='game'>
+      <div class='left-column'> 
+        <div class='deck'>
+          <p class='deck-text'>Deck</p> 
+        </div>   
+        <div class='button-turn'>
+          <button id='hit-button'>Hit</button>
+          <button id='stand-button'>Stand</button>
+          <button id='next-hand-button'>Next Hand</button>
+        </div>
+      </div>
+
+      <div class='middle-column'>
+        <div class='dealer'>
+          <p>Dealer</p>
+        </div>
+        <div class='player'>
+          <p>Player</p>
+        </div>
+      </div>
+      <div class='right-column'>
+        <div class='card-pile'>
+          <p class='card-pile-t'>Discarded Pile</p>
+        </div>
+        <p>Recomendation</p>
+        <button id='rec-button'>Recomendation</button>
+      </div>
+    </div>
+  <footer>© 2020 Effie Richman</footer>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src='script.js'></script>
+  </body>
+</html>
+

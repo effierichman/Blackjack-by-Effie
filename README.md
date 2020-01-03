@@ -18,7 +18,7 @@ Before you start any actual coding, you must meet with your Squad Leader for ~10
 
 - **Wireframes**:  
 Mobile and computer, it will be landscape on phone to have the same layout. It will just be on a smaller scale on mobile
-[wireframes]('pics/project layout.png')
+![wireframes]('pics/project layout.png')
 - **MVP**: 
 Scoreboard for player and dealer
 Reset button
@@ -46,9 +46,9 @@ Day 6: add post mvp goals
 Day 7: make everything pretty and finish post mvp goals
 
 - **Priority Matrix**: 
-[priority]('pics/Screen Shot 2020-01-02 at 2.12.13 PM.png')
+![priority]('pics/Screen Shot 2020-01-02 at 2.12.13 PM.png')
 - **Timeframes**: 
-[timeframes]('pics/Screen Shot 2020-01-02 at 2.14.29 PM.png')
+![timeframes]('pics/Screen Shot 2020-01-02 at 2.14.29 PM.png')
 
 Interested in styling your README.md to make it look nice? Don't know how to include photos or create links? Check out this [Markdown Cheetsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)!
 

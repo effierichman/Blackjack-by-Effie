@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+} 
+
+ header {
+  text-align: center;
+  background-color: beige;
+  height: 10%;
+}
+
+h1 {
+font-size: 15px;
+padding: 10px;border-bottom: 3px solid black; 
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  background-color: blue;
+  height: 15%;
+}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.deck, .button-turn {
+  flex: 0 32%;
+  height: 200px;
+  background-color: burlywood;
+}
+
+.dealer, .player {
+  flex: 0 32%;
+  height: 100px;
+  background-color: green;
+  height: 50%;
+}
+
+.card-pile, #rec-button {
+  flex: 0 32%;
+  height: 100px;
+  height: 50%;
+}
+
+.left-column, .middle-column, .right-column {
+  /* height: 60%; */
+  width: 33%;
+}
+
+footer {
+  text-align: center;
+  font-size: 15px;
+  padding: 10px;
+  border-top: 3px solid black; 
+  background-color: chartreuse;
+  height: 15%;
+}
