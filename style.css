@@ -36,15 +36,11 @@ padding: 10px;border-bottom: 3px solid black;
 }
 
 .dealer, .player {
-  flex: 0 32%;
-  height: 100px;
   background-color: green;
   height: 50%;
 }
 
 .card-pile, #rec-button {
-  flex: 0 32%;
-  height: 100px;
   height: 50%;
 }
 
