@@ -1,19 +1,11 @@
 
-// let deck = document.querySelector('.deck-text')
-// let discardedCards = document.querySelector('card-pile')
-// let newDeck = document.querySelector('.deck')
-// let deckPile = document.querySelector('.card-pile-t')
-// let drawCards = document.querySelector('.player')
 
 let deckHolder = []
-
-for (i = 0; i < deckHolder.length; i++) {
-  if (deckHolder[i].code === 'KS'|| deckHolder[i].code === 'KH' || deckHolder[i].code ===  'KS'|| deckHolder[i].code === 'KC') {
-    deckholder[i].value = 10;
-  } 
-  }
- allCards = deckHolder;
-
+let playerCards = []
+let dealerCards = []
+let dealerCardPoints = 0
+let playerCardPoints = 0
+let discardedPile = []
 
 //this function will grab a shuffled full deck from the api
 function getCards() {
@@ -28,9 +20,153 @@ function deckToDeckHolder(deckId) {
   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`).then(response => response.json()).then(data => {
     console.log(data.cards)
     deckHolder = data.cards
+    // deckHolder.forEach((element, i) => {
+    //   if (parseInt(deckHolder[i].value) == NaN) {
+    //     if (parseInt(deckHolder[i].value) == 'ACE') {
+    //       if (playerCardPoints <= 21)
+    //     }
+
+    //   }
+    //       if (parseInt(deckHolder[i].value) == 'KING')
+    // });
     console.log(deckHolder)
   }) 
 }
+
+nextHand = document.querySelector('#next-hand-button')
+nextHand.addEventListener('click', handDraw)
+
+function handDraw() {
+  // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
+
+  playerCards.forEach(element => {
+    discardedPile.push(element) })
+  dealerCards.forEach(element => {
+     discardedPile.push(element.code)
+  })
+  playerCards = []
+  dealerCards = []
+  console.log(discardedPile)
+  console.log(deckHolder)
+  playerCards[0] = deckHolder.pop()
+  playerCards[1] = deckHolder.pop()
+  dealerCards[0] = deckHolder.pop()
+  dealerCards[1] = deckHolder.pop()
+  console.log(playerCards)
+  console.log(dealerCards)
+  console.log(deckHolder)
+  dealerCardPoints = dealerPointCounter(dealerCards)
+  playerCardPoints = playerPointCounter(playerCards)
+  console.log(dealerCardPoints)
+  console.log(playerCardPoints)
+}
+setTimeout(handDraw, 1000)
+
+function hitButton() {
+  // this will let the player draw additional cards until the sum is 21 or over or five card total drawn
+}
+
+function standButton() {
+  //this will end the players turn and switch over to the dealercard array
+}
+
+function nextHandButton() {
+  // this will push all player and dealer cards to the discarded pile array (or just delete them) and then reannitiate initialHandDraw()
+}
+
+function dealerPointCounter(dealerCards) {
+// this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
+  dealerCards.forEach(element => {
+    if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
+      element.value = 10
+      console.log('was queen king or jack');
+      
+    } else if (element.value != 'ACE') {
+      element.value = parseInt(element.value)
+      console.log(element.value);
+      
+    }
+  })
+  dealerCards.forEach(element => {
+    if (element.value == 'ACE') {
+      element.value = 11
+      console.log('was ace');
+    }
+  })
+  let sum = 0
+  dealerCards.forEach(element => {
+    sum += element.value
+    if (sum > 21) {
+      sum = 0
+      dealerCards.forEach(element => {
+        if (element.value == 'ACE') {
+          element.value = 1
+        }
+        dealerCards.forEach(element => {
+          sum += element.value
+        })
+      })
+    }
+  })
+  return sum
+  // as each card is drawn to the dealer, this will add the points together
+}
+
+function playerPointCounter(playerCards) {
+  // this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
+  playerCards.forEach(element => {
+    if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
+      element.value = 10
+      console.log('was queen king or jack');
+      
+    } else if (element.value != 'ACE') {
+      element.value = parseInt(element.value)
+      console.log(element.value);
+      
+    }
+  })
+  playerCards.forEach(element => {
+    if (element.value == 'ACE') {
+      element.value = 11
+      console.log('was ace');
+    }
+  })
+  let sum = 0
+  playerCards.forEach(element => {
+    sum += element.value
+    if (sum > 21) {
+      sum = 0
+      playerCards.forEach(element => {
+        if (element.value == 'ACE') {
+          element.value = 1
+        }
+        playerCards.forEach(element => {
+          sum += element.value
+        })
+      })
+    }
+  })
+  return sum
+  // as each card is drawn to the player, this will add the points together
+}
+
+function whoWins() {
+  //this will compare the player and dealers points and declare a winner. 
+    // if player busts, automatic win for dealer and visa versa
+  //when round is over, update the scoreboard
+  while (playerCardPoints > dealerCardPoints && playerCardPoints <= 21) {
+
+  }
+}
+
+function playAgain() {
+  //this will reset the entire game, the same as refreshing the page
+}
+
+function recbutton() {
+  //this will calculate the chances of hitting and standing and display a percentage for whichever has the higher perrcentage
+}
+
 
 // function drawACard() {
 //   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`).then(response => response.json()).then(data => console.log(data));

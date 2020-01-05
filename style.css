@@ -4,6 +4,8 @@
 
 body {
   background-image: url('pics/blackjacktable.jpeg');
+  color: white;
+  text-align: center;
 }
 
  header {
@@ -15,6 +17,7 @@ body {
 h1 {
 font-size: 15px;
 padding: 10px;border-bottom: 3px solid black; 
+color: white;
 }
 
 .top {
@@ -31,6 +34,18 @@ padding: 10px;border-bottom: 3px solid black;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
+}
+
+#input-name, #submitbutton, #reset-button, #hit-button, #stand-button, #next-hand-button, 
+#rec-button {
+  background-color: darkgreen;
+  border-color: black;
+  color: white;
+}
+
+#input-name {
+ width: auto;
+ 
 }
 
 .deck, .button-turn {

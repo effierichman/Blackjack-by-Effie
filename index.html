@@ -17,7 +17,7 @@
     <!-- This will be the player input, the scoreboard, and the reset button -->
     <div class='top'>
       <form>
-        <input type="text" name="name" value="Enter Name">
+        <input id='input-name' type="text" name="name" value="Enter Name">
         <input type="submit" name="submit" id="submitbutton" value="Click Here">
       </form>
       <!-- <p>Players Name</p> -->
@@ -42,7 +42,7 @@
       </div>
 
       <div class='middle-column'>
-        <div class='dealer'>
+        <div class='dealer' id='dealerCards'>
           <p>Dealer</p>
           <div class='dcard1'>Card 1</div>
           <div class='dcard2'>Card 2</div>
@@ -50,7 +50,7 @@
           <div class='dcard4'>Card 4</div>
           <div class='dcard5'>Card 5</div>
         </div>
-        <div class='player'>
+        <div class='player' id='playerCards'>
           <p>Player</p>
           <div class='pcard1'>Card 1</div>
           <div class='pcard2'>Card 2</div>
