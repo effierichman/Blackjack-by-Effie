@@ -9,9 +9,9 @@ let discardedPile = []
 
 //this function will grab a shuffled full deck from the api
 function getCards() {
-  fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').then(response => response.json()).then(data => 
+  fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').then(response => response.json()).then(data =>
     //calling the the decktodeckholder function and search the deckid to make sure it is the same deck that is stored in the new array
-   deckToDeckHolder(data.deck_id))
+    deckToDeckHolder(data.deck_id))
 }
 deckId = getCards()
 
@@ -20,17 +20,8 @@ function deckToDeckHolder(deckId) {
   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`).then(response => response.json()).then(data => {
     console.log(data.cards)
     deckHolder = data.cards
-    // deckHolder.forEach((element, i) => {
-    //   if (parseInt(deckHolder[i].value) == NaN) {
-    //     if (parseInt(deckHolder[i].value) == 'ACE') {
-    //       if (playerCardPoints <= 21)
-    //     }
-
-    //   }
-    //       if (parseInt(deckHolder[i].value) == 'KING')
-    // });
     console.log(deckHolder)
-  }) 
+  })
 }
 
 nextHand = document.querySelector('#next-hand-button')
@@ -40,9 +31,10 @@ function handDraw() {
   // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
 
   playerCards.forEach(element => {
-    discardedPile.push(element) })
+    discardedPile.push(element)
+  })
   dealerCards.forEach(element => {
-     discardedPile.push(element.code)
+    discardedPile.push(element.value)
   })
   playerCards = []
   dealerCards = []
@@ -62,29 +54,19 @@ function handDraw() {
 }
 setTimeout(handDraw, 1000)
 
-function hitButton() {
-  // this will let the player draw additional cards until the sum is 21 or over or five card total drawn
-}
 
-function standButton() {
-  //this will end the players turn and switch over to the dealercard array
-}
-
-function nextHandButton() {
-  // this will push all player and dealer cards to the discarded pile array (or just delete them) and then reannitiate initialHandDraw()
-}
 
 function dealerPointCounter(dealerCards) {
-// this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
+  // this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
   dealerCards.forEach(element => {
     if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
       element.value = 10
       console.log('was queen king or jack');
-      
+
     } else if (element.value != 'ACE') {
       element.value = parseInt(element.value)
       console.log(element.value);
-      
+
     }
   })
   dealerCards.forEach(element => {
@@ -118,13 +100,14 @@ function playerPointCounter(playerCards) {
     if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
       element.value = 10
       console.log('was queen king or jack');
-      
+
     } else if (element.value != 'ACE') {
       element.value = parseInt(element.value)
-      console.log(element.value);
-      
+      console.log(element.value)
+
     }
   })
+
   playerCards.forEach(element => {
     if (element.value == 'ACE') {
       element.value = 11
@@ -134,25 +117,63 @@ function playerPointCounter(playerCards) {
   let sum = 0
   playerCards.forEach(element => {
     sum += element.value
-    if (sum > 21) {
-      sum = 0
-      playerCards.forEach(element => {
-        if (element.value == 'ACE') {
-          element.value = 1
-        }
-        playerCards.forEach(element => {
-          sum += element.value
-        })
-      })
-    }
+    
   })
+  if (sum > 21) {
+    console.log('player went over, check for aces')
+    sum = 0
+    playerCards.forEach(element => {
+      console.log('log each element', element);
+      
+      if (element.value == 'ACE') {
+        element.value = 1
+      } else {
+        sum += element.value
+      }
+      // playerCards.forEach(element => {
+      //   sum += element.value
+      // })
+    })
+  }
+
   return sum
   // as each card is drawn to the player, this will add the points together
+
 }
+
+hitButton = document.querySelector('#hit-button')
+hitButton.addEventListener('click', function(event) {
+  // this will let the player draw additional cards until the sum is 21 or over or five card total drawn
+  if (playerCardPoints < 21) {
+    // playerCards = []
+    // dealerCards = []
+    // playerCardPoints = playerPointCounter(playerCards)
+    
+    playerCards.push(deckHolder.pop())
+    playerCardPoints = playerPointCounter(playerCards)
+    
+    // dealerCards[1] = deckHolder.pop()
+
+  } 
+  console.log('made it in hit card')
+  console.log(playerCards)
+  console.log(deckHolder)
+  console.log(playerCardPoints)
+})
+
+
+
+standButton = document.querySelector('#stand-button')
+standButton.addEventListener('click', standButton)
+
+function standButton() {
+  //this will end the players turn and switch over to the dealercard array
+}
+
 
 function whoWins() {
   //this will compare the player and dealers points and declare a winner. 
-    // if player busts, automatic win for dealer and visa versa
+  // if player busts, automatic win for dealer and visa versa
   //when round is over, update the scoreboard
   while (playerCardPoints > dealerCardPoints && playerCardPoints <= 21) {
 

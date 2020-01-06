@@ -57,6 +57,10 @@ color: white;
 .dealer, .player {
   /* background-color: green; */
   height: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .card-pile, #rec-button {
@@ -78,5 +82,9 @@ footer {
   padding: 10px;
   border-top: 3px solid black; 
   /* background-color: chartreuse; */
-  height: 15%;
+  height: 5%;
+}
+
+#rec-button {
+  height: 50px;
 }
