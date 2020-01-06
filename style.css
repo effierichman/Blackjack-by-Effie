@@ -36,7 +36,7 @@ color: white;
   width: 100%;
 }
 
-#input-name, #submitbutton, #reset-button, #hit-button, #stand-button, #next-hand-button, 
+#input-name, #submitbutton, #reset-button, #hit-button, #stand-button, #next-hand-button, #start-button,
 #rec-button {
   background-color: darkgreen;
   border-color: black;

@@ -25,7 +25,7 @@
         <div id='scoreBoard1'>Player One: 0</div>
         <div id='scoreBoard2'>Dealer: 0</div>
       </div>
-      <button id='reset-button' onclick='playAgain()''>Reset Score</button>
+      <button id='reset-button'>Reset Game</button>
     </div>
 
     <!-- This will be where the deck of cards will be displayed and the buttons for turns-->
@@ -35,6 +35,7 @@
           <p class='deck-text'>Deck</p> 
         </div>   
         <div class='button-turn'>
+          <button id='start-button'>Start Game</button></br>
           <button id='hit-button'>Hit</button>
           <button id='stand-button'>Stand</button>
           <button id='next-hand-button'>Next Hand</button>
@@ -44,8 +45,8 @@
       <div class='middle-column'>
         <div class='dealer' id='dealerCards'>
           <p>Dealer</p>
-          <div class='dcard1'>Card 1</div>
           <div class='dcard2'>Card 2</div>
+          <div class='dcard1'>Card 1</div>
           <div class='dcard3'>Card 3</div>
           <div class='dcard4'>Card 4</div>
           <div class='dcard5'>Card 5</div>
