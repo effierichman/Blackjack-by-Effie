@@ -8,6 +8,8 @@ let playerCardPoints = 0
 let discardedPile = []
 let dealerScore = 0
 let playerScore = 0
+let alert = document.querySelector('.scoreBoardText')
+let pctText = document.querySelector('.rec-button-text')
 
 function setScore() {
   document.querySelector('#scoreBoard1Score').innerHTML = playerScore
@@ -17,6 +19,7 @@ function setScore() {
 startGane = document.querySelector('#start-button')
 startGane.addEventListener('click', startTheGame)
 function startTheGame() {
+  pctText.innerHTML = ''
   getCards()
 }
 
@@ -58,6 +61,7 @@ function deckToDeckHolder(deckId) {
 nextHand = document.querySelector('#next-hand-button')
 nextHand.addEventListener('click', handDraw)
 function handDraw() {
+  pctText.innerHTML = ''
   // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
 
 
@@ -113,6 +117,7 @@ function handDraw() {
       pCard5.removeChild(pCard5.lastChild)
     }
   }
+  alert.innerHTML = ''
   console.log(discardedPile)
   console.log(deckHolder)
   playerCards[0] = deckHolder.pop()
@@ -121,7 +126,7 @@ function handDraw() {
   playerCards[1] = deckHolder.pop()
   pCard2.innerHTML = `<img class='pCardImage' src='${playerCards[1].image}'>`
   dealerCards[0] = deckHolder.pop()
-  dCard1.innerHTML = `<img class='dCardImage' src='${dealerCards[0].image}'>`
+  dCard1.innerHTML = `<img class='dCardImage' src='20200107_134815.jpg'>`
   dealerCards[1] = deckHolder.pop()
   dCard2.innerHTML = `<img class='dCardImage' src='${dealerCards[1].image}'>`
   console.log(playerCards)
@@ -132,7 +137,7 @@ function handDraw() {
   console.log(dealerCardPoints)
   console.log(playerCardPoints)
   if (playerCards.length == 2 && playerCardPoints == 21) {
-    alert('Player has a BlackJack, you get a point')
+    alert.innerHTML = 'You Have A BlackJack, You Win!!!'
     playerScore += 1
     setScore()
   }
@@ -145,10 +150,11 @@ function dealerWinningHand(cards) {
     const maxHand = Math.max(...Array.from(setHand.values()));
     return maxHand;
   }
-  console.log('dealer busts')
-  playerScore += 1
-  setScore()
-  return 0
+  // console.log('dealer busts')
+  // playerScore += 1
+  // alert.innerHTML = 'Dealer Busts, Player Wins!!'
+  // setScore()
+  // return 0
 
 }
 function winningHand(cards) {
@@ -157,9 +163,10 @@ function winningHand(cards) {
     const maxHand = Math.max(...Array.from(setHand.values()));
     return maxHand;
   }
-  console.log('player busts')
+  console.log('Player Busts')
   dealerScore += 1
   setScore()
+  alert.innerHTML = 'Player Busts, Dealer Wins!!'
   return 0
 
 }
@@ -206,6 +213,7 @@ function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
 
 hitButton = document.querySelector('#hit-button')
 hitButton.addEventListener('click', function (event) {
+  pctText.innerHTML = ''
   // this will let the player draw additional cards until the sum is 21 or over or five card total drawn
   if (playerCardPoints < 21) {
 
@@ -248,37 +256,45 @@ hitButton.addEventListener('click', function (event) {
 standButton = document.querySelector('#stand-button')
 standButton.addEventListener('click', function (event) {
   //this will end the players turn and switch over to the dealercard array
+  pctText.innerHTML = ''
+  let dCard1 = document.querySelector('.dcard1')
+  dCard1.innerHTML = `<img class='dCardImage' src='${dealerCards[0].image}'>`
   if (dealerCardPoints > playerCardPoints) {
-    alert('dealer wins and dealer gets a point')
+    alert.innerHTML = 'Dealer Wins!!!'
     dealerScore += 1
     setScore()
   }
-  while (dealerCardPoints <= playerCardPoints && dealerCardPoints <= 21 && dealerCardPoints !== 0) {
+  while (dealerCardPoints <= playerCardPoints && dealerCardPoints <= 21 && dealerCardPoints !== 0 && dealerCards.length < 5) {
 
     dealerCards.push(deckHolder.pop())
     dealerCardPoints = dealerWinningHand(dealerCards)
+
     let dCard3 = document.querySelector('.dcard3')
     let dCard4 = document.querySelector('.dcard4')
     let dCard5 = document.querySelector('.dcard5')
 
     if (dealerCards.length == 3) {
       dCard3.innerHTML = `<img class='dCardImage' src='${dealerCards[2].image}'>`
-    } else if (playerCards.length == 4) {
+
+    } else if (dealerCards.length == 4) {
       dCard4.innerHTML = `<img class='dCardImage' src='${dealerCards[3].image}'>`
     }
-    else if (playerCards.length == 5) {
+    else if (dealerCards.length == 5) {
       dCard5.innerHTML = `<img class='dCardImage' src='${dealerCards[4].image}'>`
     }
 
-    if (dealerCardPoints > playerCardPoints) {
-      alert('dealer wins and dealer gets a point')
-      dealerScore += 1
-      setScore()
-      return
-    }
-
-
   }
+  if (dealerCardPoints > playerCardPoints) {
+    alert.innerHTML = 'Dealer Wins'
+    dealerScore += 1
+    setScore()
+    return
+  } else {
+    alert.innerHTML = 'Player Wins'
+    playerScore += 1
+    setScore()
+  }
+
   console.log('made it in hit card')
   console.log(dealerCards)
   console.log(dealerCardPoints);
@@ -303,6 +319,8 @@ playAgainButton.addEventListener('click', function (event) {
   setTimeout(function () {
     playerCards = []
     dealerCards = []
+    alert.innerHTML = ''
+    pctText.innerHTML = ''
     playerScore = 0
     setScore()
     dealerScore = 0
@@ -377,167 +395,122 @@ playAgainButton.addEventListener('click', function (event) {
 
 //stand button: draw cards until dealer point are more than player; if bust, declare player winner and update scoreboard
 
-// idea and code my Ethan Jarrell
-// 1 Create a simulated deck.
-// 2 remove known cards from the deck.
-// 3 draw a new card and substitute it for the unknown card.
-// 4 If the sum of the new card, plus the known dealer card is higher than the player sum, add 1 to a variable.
-// 5 If the test runs a million times, determine the number of times the outcome puts the dealer hand higher than the players.
+// Hard Hands
 
-// recButton = document.querySelector('#rec-button')
-// recButton.addEventListener('click', getPrecentage)
-// function getPrecentage (p,d) {
-//     let percentageOne = 0;
-//     let testDeck2 = testDeck;
-//     let valP = [];
-//     let valD = [];
-//     for (i = 0; i < playerCards.length; i++) {
-//       valP.push(playerCards[i].value);
-//     }
-//     for (var i = 0; i < dealerCards.length; i++) {
-//       valD.push(dealerCards[i].value);
-//     }
-//     p = valP;
-//     d = valD;
+// 5-7: Always hit
+// 8: Double if dealer shows 5 or 6, otherwise hit
+// 9: Double if dealer shows 2-6, otherwise hit
+// 10: Double if dealer shows 2-9, otherwise hit
+// 11: Always double
+// 12: Stand if dealer shows 4-6, otherwise hit
+// 13: Stand if dealer shows 2-6, otherwise hit
+// 14: Stand if dealer shows 2-6, otherwise hit
+// 15: Stand if dealer shows 2-6, hit on 7-ace
+// 16: Stand if dealer shows 2-6, hit on 7-ace
+// 17-21: Always stand
 
-//     for (i = 0; i < p.length; i++) {
-//       if(testDeck2.includes(p[i])==true){
-//         let index1 = testDeck2.indexOf(p[i]);
-//         testDeck2.splice(index1,1);
-//       }
-//     }
-//     for (i = 0; i < d.length; i++) {
-//       if(testDeck2.includes(d[i])==true && i!=0){
-//         let index1 = testDeck2.indexOf(d[i]);
-//         testDeck2.splice(index1,1);
-//       }
-//     }
+// Soft Hands
 
-//     let dealerCardss2 = [d.pop()];
-//     function getSum(total, num) {
-//       return total + num;
-//     }
-//     let playerCardPoints2 = p.reduce(getSum);
-//  let dealerCardPoints2 = dealerCardss2.reduce(getSum);
-//   console.log(dealerCardPoints2);
-//   console.log(playerCardPoints2)
+// A-2: Double if dealer shows 4-6, otherwise hit
+// A-3: Double if dealer shows 4-6, otherwise hit
+// A-4: Double if dealer shows 4-6, otherwise hit
+// A-5: Double if dealer shows 4-6, otherwise hit
+// A-6: Double if dealer shows 2-6, otherwise hit
+// A-7: Double if dealer shows 3-6, stand on 2,7, & 8, hit on 9, 10 & ace
+// A-8: Double if dealer shows 6, otherwise stand
+// A-9: Always stand
+// A-10: Always stand
+// Pairs:
 
-//     for (i = 0; i < iterations; i++) {
-//       let dealerCard1 = testDeck2[Math.floor(Math.random()*testDeck2.length)];
-
-//       if(dealerCardPoints2+dealerCard1 > playerCardPoints2){
-//         percentageOne = percentageOne + 1
-//       }
-//     }
-
-//     let percentageTwo = Math.round((percentageOne/iterations)*100);
-
-//   return percentageTwo;
-
-//   }
-
-// getPrecentage()
+// 2-2: Split if dealer shows 3-7, otherwise hit
+// 3-3: Split if dealer shows 4-7, otherwise hit
+// 4-4: Split if dealer shows 4-6, otherwise hit
+// 5-5: Double if dealer shows 2-9, hit on 10 & ace
+// 6-6: Split if dealer shows 2-7, otherwise hit
+// 7-7: Split if dealer shows 2-7, stand on 10, hit on 8, 9 & ace
+// 8-8: Always split
+// 9-9: Split if dealer shows 2-6 and 8-9, otherwise stand
+// 10-10: Always stand
+// Ace-Ace: Always split
 
 
-// function dealerPointCounter(dealerCards) {
-//   // if (deckHolder == 0) {
-//   //   getCards()
-//   // }
-//   // this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
-//   dealerCards.forEach(element => {
-//     if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
-//       element.value = 10
-//       console.log('was queen king or jack');
 
-//     } else if (element.value != 'ACE') {
-//       element.value = parseInt(element.value)
-//       console.log(element.value);
 
-//     }
-//   })
 
-//   dealerCards.forEach(element => {
-//     if (element.value == 'ACE' && dealerCardPoints <= 21) {
-//       element.value = 11
-//       console.log('was ace')
-//     }
-//   })
 
-//   let sum = 0
-//   dealerCards.forEach(element => {
-//     sum += element.value
-//     if (sum > 21) {
-//       alert('Dealer Busts, you win this round')
-//       playerScore += 1
-//       console.log('player went over, check for aces')
-//       sum = 0
-//       dealerCards.forEach(element => {
-//         console.log('log each element', element);
+// let array = [
+//   //7   8   9  10  11  12
+//   ["h", "h", "h", 'h', 'h', 'h'],
+//   []
+// ]
 
-//         if (element.value == 'ACE') {
-//           element.value = 1
-//         } else {
-//           sum += element.value
-//         }
-//       })
-//     }
-//     // as each card is drawn to the dealer, this will add the points together
-//   })
-//   return sum
-//   if (playerCards.length > 2 && playerCardPoints == 21 && dealerCardPoints == 21) {
-//     alert('You have pushed, there is no winner here, nor a loser')
-//   }
-// }
 
-// function PlayerPointCounter(playerCards) {
-//   // if (deckHolder == 0) {
-//   //   getCards()
-//   // }
-//   // this will check the array for face cards and aces and change then into intergers and the same with the rest of the cards
-//   playerCards.forEach(element => {
-//     if (element.value == 'KING' || element.value == 'QUEEN' || element.value == 'JACK') {
-//       element.value = 10
-//       console.log('was queen king or jack');
+// array[2][13] = 
 
-//     } else if (element.value != 'ACE') {
-//       element.value = parseInt(element.value)
-//       console.log(element.value)
 
-//     }
-//   })
+// got the code idea from Ethan Jarrell https://hackernoon.com/blackjack-application-with-javascript-2c76db51dea7
+let iterations = 1000000;
+let testDeck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11];
 
-//   playerCards.forEach(element => {
-//     if (element.value == 'ACE' && playerCardPoints <= 21) {
-//       element.value = 11
-//       console.log('was ace');
-//     }
-//   })
-//   let sum = 0
-//   playerCards.forEach(element => {
-//     sum += element.value
 
-//   })
-//   if (sum > 21) {
-//     playerCards.forEach(element => {
-//       console.log('log each element', element);
+recButton = document.querySelector('#rec-button')
+recButton.addEventListener('click', (e) => {
+  let pct = determinePercent(playerCards, dealerCards[1])
+  pctText.innerHTML = `There is a ${pct} percentage chance to hit`
+})
 
-//       if (element.value == 'ACE') {
-//         element.value = 1
-//       } else {
-//         sum += element.value
-//       }
-//     })
-//     alert('Player Busts, you will do better next hand')
-//     dealerScore += 1
-//     // hitButton.removeEventListener
-//     console.log('player went over, check for aces')
-//     sum = 0
-//   }
-//   console.log(dealerScore)
+function determinePercent(p, d) {
+  let percentageOne = 0;
+  let testDeck2 = testDeck;
+  let valP = [];
+  let valD = [];
+  for (var i = 0; i < playerCards.length; i++) {
+    valP.push(playerCards[i].value);
+  }
+  for (var i = 0; i < dealerCards.length; i++) {
+    valD.push(dealerCards[i].value);
+  }
+  p = valP;
+  d = valD;
 
-//   if (playerCards.length > 2 && playerCardPoints == 21 && dealerCardPoints == 21) {
-//     alert('You have pushed, there is no winner here, nor a loser')
-//   }
-//   return sum
-//   // as each card is drawn to the player, this will add the points together
-// }
+  for (var i = 0; i < p.length; i++) {
+    if (testDeck2.includes(p[i]) == true) {
+      let index1 = testDeck2.indexOf(p[i]);
+      testDeck2.splice(index1, 1);
+    }
+  }
+  for (var i = 0; i < d.length; i++) {
+    if (testDeck2.includes(d[i]) == true && i != 0) {
+      let index1 = testDeck2.indexOf(d[i]);
+      testDeck2.splice(index1, 1);
+    }
+  }
+
+  let dealerValues2 = [d.pop()];
+  function getSum(total, num) {
+    return total + num;
+  }
+  let playerSum2 = p.reduce(getSum);
+  let dealerSum2 = dealerValues2.reduce(getSum);
+  console.log(dealerSum2);
+
+  for (var i = 0; i < iterations; i++) {
+    let dealerCard1 = testDeck2[Math.floor(Math.random() * testDeck2.length)];
+
+    if (dealerSum2 + dealerCard1 > playerSum2) {
+      percentageOne = percentageOne + 1
+    }
+  }
+
+  let percentageTwo = Math.round((percentageOne / iterations) * 100);
+
+  return percentageTwo;
+}
+
+// let form = document.createElement('div')
+// // form input for names 
+// form.innerHTML = "<div><h4>some stuff</div>";
+// let top1 = document.querySelector('.top')
+// top1.append(form)
+// /// once form filed out 
+// /// delete and append values to name
