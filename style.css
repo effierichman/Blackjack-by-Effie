@@ -21,10 +21,9 @@ color: white;
 }
 
 .top {
-  display: flex;
+  /* display: flex; */
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
   /* background-color: blue; */
   height: 15%;
 }
@@ -87,4 +86,14 @@ footer {
 
 #rec-button {
   height: 50px;
+}
+
+.pCardImage, .dCardImage {
+  height: 75px;
+  width: 75px;
+}
+
+.deckPile {
+  height: 75px;
+  width: 75px;
 }

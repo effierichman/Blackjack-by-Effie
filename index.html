@@ -17,15 +17,18 @@
     <!-- This will be the player input, the scoreboard, and the reset button -->
     <div class='top'>
       <form>
-        <input id='input-name' type="text" name="name" value="Enter Name">
-        <input type="submit" name="submit" id="submitbutton" value="Click Here">
+        <!-- <input id='input-name' type="text" name="name" value="Enter Name"> -->
+        <!-- <input type="submit" name="submit" id="submitbutton" value="Click Here"> -->
       </form>
       <!-- <p>Players Name</p> -->
       <div class='scoreboard'>
-        <div id='scoreBoard1'>Player One: 0</div>
-        <div id='scoreBoard2'>Dealer: 0</div>
+        <div id='scoreBoard1'>Player One:</div>
+        <div id='scoreBoard1Score'></div>
+        <div id='scoreBoard2'>Dealer:</div>
+        <div id='scoreBoard2Score'></div>
       </div>
-      <button id='reset-button'>Reset Game</button>
+      <div class='scoreBoardText'></div>
+     
     </div>
 
     <!-- This will be where the deck of cards will be displayed and the buttons for turns-->
@@ -33,38 +36,42 @@
       <div class='left-column'> 
         <div class='deck'>
           <p class='deck-text'>Deck</p> 
+          <img class='deckPile' src="20200107_134815.jpg">
         </div>   
         <div class='button-turn'>
           <button id='start-button'>Start Game</button></br>
           <button id='hit-button'>Hit</button>
           <button id='stand-button'>Stand</button>
           <button id='next-hand-button'>Next Hand</button>
+          <button id='reset-button'>Reset Game</button>
         </div>
       </div>
 
       <div class='middle-column'>
         <div class='dealer' id='dealerCards'>
           <p>Dealer</p>
-          <div class='dcard2'>Card 2</div>
-          <div class='dcard1'>Card 1</div>
-          <div class='dcard3'>Card 3</div>
-          <div class='dcard4'>Card 4</div>
-          <div class='dcard5'>Card 5</div>
+          <div class='dcard1'></div>
+          <div class='dcard2'></div>
+          <div class='dcard3'></div>
+          <div class='dcard4'></div>
+          <div class='dcard5'></div>
         </div>
         <div class='player' id='playerCards'>
           <p>Player</p>
-          <div class='pcard1'>Card 1</div>
-          <div class='pcard2'>Card 2</div>
-          <div class='pcard3'>Card 3</div>
-          <div class='pcard4'>Card 4</div>
-          <div class='pcard5'>Card 5</div>
+          <div class='pcard1'></div>
+          <div class='pcard2'></div>
+          <div class='pcard3'></div>
+          <div class='pcard4'></div>
+          <div class='pcard5'></div>
         </div>
       </div>
       <div class='right-column'>
         <div class='card-pile'>
           <p class='card-pile-t'>Discarded Pile</p>
+          <img class='deckPile' src="20200107_134815.jpg">
         </div>
         <button id='rec-button'>Recomendation</button>
+        <p></p>
       </div>
     </div>
   <footer>© 2020 Effie Richman</footer>
