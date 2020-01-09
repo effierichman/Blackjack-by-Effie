@@ -50,6 +50,14 @@ Day 7: make everything pretty and finish post mvp goals
 - **Timeframes**: 
 ![timeframes]('pics/Screen Shot 2020-01-02 at 2.14.29 PM.png')
 
+<p align="center">
+  <img src="pics/Screen Shot 2020-01-02 at 2.12.13 PM.png">
+</p>
+
+<p align="center">
+  <img src="pics/Screen Shot 2020-01-02 at 2.14.29 PM.png">
+</p>
+
 Interested in styling your README.md to make it look nice? Don't know how to include photos or create links? Check out this [Markdown Cheetsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)!
 
 ### STEP 3: Make a New Repo
