@@ -1,83 +1,87 @@
-// let allConfetti = []
+// Used by the program, don't edit these
+let allConfetti = []
+let fadeFallTimeOut
 
-// // confetti will be random colors picked from below array
-// let colors = ["green", "rgba(0,0,255,1)", "#ff0000"]
+// confetti will be random colors picked from below array, add or remove any colors you want
+let colors = ["green", "rgba(0,0,255,1)", "#ff0000"]
 
-// let fadeFallTimeOut
+// adjust this to be the element where you want the confetti to start at.
+// leave it as is if you just want it to center in the window
+// let centerOnElement = document.querySelector('#exampleID')
+let centerOnElement = document.querySelector('.game')
 
-// const prepareConfetti = () =>
-// {
-//     let amountOfConfetti = 60
-//     let confetti = document.createElement('div')
-//     for (let i = 0; i < amountOfConfetti; i++)
-//     {
-//         let newConfetti = document.createElement('div')
-//         newConfetti.classList.add('confetti')
-//         allConfetti.push(newConfetti)
-//         confetti.append(newConfetti)
-//     }
-//     document.body.append(confetti)
-// }
+// adjust these to center it on the item
+// since i am using the whole screen i get the whole width and divide by two
+// if you change the centerOnElement to an element that is 100 by 100px
+// you would change these both to 50 to center the confetti start position
+let adjustTop = 488 / 2
+let adjustLeft = 510
 
-// // from stack overflow: https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+const prepareConfetti = () => {
+  let amountOfConfetti = 60
+  let confetti = document.createElement('div')
+  for (let i = 0; i < amountOfConfetti; i++) {
+    let newConfetti = document.createElement('div')
+    newConfetti.classList.add('confetti')
+    allConfetti.push(newConfetti)
+    confetti.append(newConfetti)
+  }
+  document.body.append(confetti)
+}
 
-// function getOffset(el)
-// {
-//     const rect = el.getBoundingClientRect();
-//     return {
-//         left: rect.left + window.scrollX,
-//         top: rect.top + window.scrollY
-//     };
-// }
+// from stack overflow: https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
 
-// const explodeConfetti = () =>
-// {
-//     resetConfetti()
-//     let radius = 200
-//     allConfetti.forEach(confetti =>
-//     {
-//         confetti.style.display = 'block'
-//         confetti.style.left = getOffset(confetti).left + Math.random() * (radius * 2) - radius + "px"
-//         confetti.style.top = getOffset(confetti).top + Math.random() * (radius * 2) - radius + "px"
-//         let rotateValue = Math.random() * 360 + 360
-//         let translateValue = Math.random() * (radius * 2) - radius
-//         confetti.style.transform = ' translate3d(0,0,' + translateValue + 'px)' + ' rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
-//         confetti.style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))]
-//     })
-//     fadeFallTimeOut = setTimeout(fallAndFadeConfetti, 200)
-// }
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
 
-// const fallAndFadeConfetti = () =>
-// {
-//     allConfetti.forEach(confetti =>
-//     {
-//         confetti.style.transition = "3s"
-//         confetti.style.transitionTimingFunction = "ease-in"
-//         confetti.style.top = getOffset(confetti).top + Math.random() * 1000 + 1000 + "px"
-//         confetti.style.opacity = "0%"
-//         let rotateValue = Math.random() * 360 + 360
-//         confetti.style.transform = 'rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
-//     })
-// }
-// let game = document.querySelector('.game')
-// const resetConfetti = () =>
-// {
-//     clearTimeout(fadeFallTimeOut)
-//     allConfetti.forEach(confetti =>
-//     {
-//         confetti.style.transition = '0.2s'
-//         confetti.style.display = 'none'
-//         confetti.style.left = (getOffset(game).left + 50) + "px"
-//         confetti.style.top = (getOffset(game).top + 50) + "px"
-//         confetti.style.opacity = "100%"
-//         confetti.style.transform = 'rotate3d(0)'
-//         confetti.style.transitionTimingFunction = "ease-out"
-//         confetti.style.backgroundColor = 'black'
-//     })
-// }
+const explodeConfetti = () => {
+  resetConfetti()
+  // radius controls the initial spread
+  let radius = 200
+  allConfetti.forEach(confetti => {
+    confetti.style.display = 'block'
+    confetti.style.left = getOffset(confetti).left + Math.random() * (radius * 2) - radius + "px"
+    confetti.style.top = getOffset(confetti).top + Math.random() * (radius * 2) - radius + "px"
+    let rotateValue = Math.random() * 360 + 360
+    let translateValue = Math.random() * (radius * 2) - radius
+    confetti.style.transform = ' translate3d(0,0,' + translateValue + 'px)' + ' rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
+    confetti.style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))]
+  })
+  fadeFallTimeOut = setTimeout(fallAndFadeConfetti, 200)
+}
 
-// // Call prepare confetti when page loads
-// prepareConfetti()
+const fallAndFadeConfetti = () => {
+  allConfetti.forEach(confetti => {
+    confetti.style.transition = "3s"
+    confetti.style.transitionTimingFunction = "ease-in"
+    confetti.style.top = getOffset(confetti).top + Math.random() * 1000 + 1000 + "px"
+    confetti.style.opacity = "0%"
+    let rotateValue = Math.random() * 360 + 360
+    confetti.style.transform = 'rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
+  })
+}
+
+const resetConfetti = () => {
+  clearTimeout(fadeFallTimeOut)
+  allConfetti.forEach(confetti => {
+    confetti.style.transition = '0.2s'
+    confetti.style.display = 'none'
+    confetti.style.left = (getOffset(centerOnElement).left + adjustLeft) + "px"
+    confetti.style.top = (getOffset(centerOnElement).top + adjustTop) + "px"
+    confetti.style.opacity = "100%"
+    confetti.style.transform = 'rotate3d(0)'
+    confetti.style.transitionTimingFunction = "ease-out"
+    confetti.style.backgroundColor = 'black'
+  })
+}
+
+// Call prepare confetti when page loads
+prepareConfetti()
 
 // call explode when you want it to go off
 // explodeConfetti()
@@ -106,7 +110,7 @@ startGane = document.querySelector('#start-button')
 startGane.addEventListener('click', startTheGame)
 function startTheGame() {
   pctText.innerHTML = ''
-  // resetConfetti()
+  resetConfetti()
   getCards()
 }
 
@@ -148,7 +152,7 @@ nextHand = document.querySelector('#next-hand-button')
 nextHand.addEventListener('click', handDraw)
 function handDraw() {
   pctText.innerHTML = ''
-  // resetConfetti()
+  resetConfetti()
   // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
 
   playerCards.forEach(element => {
@@ -236,7 +240,7 @@ function handDraw() {
   console.log(playerCardPoints)
   if (playerCards.length == 2 && playerCardPoints == 21) {
     alert.innerHTML = `${name} has A BlackJack, You Win!!!`
-    // explodeConfetti()
+    explodeConfetti()
     playerScore += 1
     setScore()
   }
@@ -382,6 +386,7 @@ standButton.addEventListener('click', function (event) {
     alert.innerHTML = 'Player Wins'
     playerScore += 1
     setScore()
+    explodeConfetti()
   }
 
   console.log('made it in hit card')
@@ -396,7 +401,7 @@ playAgainButton = document.querySelector('#reset-button')
 playAgainButton.addEventListener('click', function (event) {
   //this will reset the entire game, the same as refreshing the page
   setTimeout(function () {
-    // resetConfetti()
+    resetConfetti()
     playerCards = []
     dealerCards = []
     alert.innerHTML = ''
@@ -540,8 +545,8 @@ function determinePercent(p, d) {
   return percentageTwo;
 }
 
-function animation() {
-  let container = document.querySelector('.flip-container')
-  container.classList.add('animate')
-}
+// function animation() {
+//   let container = document.querySelector('.flip-container')
+//   container.classList.add('animate')
+// }
 
