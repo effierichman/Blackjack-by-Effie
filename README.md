@@ -56,7 +56,7 @@ Day 7: make everything pretty and finish post mvp goals
 
 - **Timeframes**: 
 <p align="center">
-  <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578583985/Screen_Shot_2020-01-09_at_10.26.02_AM_bxrwut.png">
+  <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578584425/Screen_Shot_2020-01-09_at_10.39.30_AM_cqoe0z.png">
 </p>
 
 Interested in styling your README.md to make it look nice? Don't know how to include photos or create links? Check out this [Markdown Cheetsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)!
