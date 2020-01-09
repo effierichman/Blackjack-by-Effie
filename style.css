@@ -2,14 +2,6 @@
   margin: 0;
 } 
 
-/* html, body {
-  position:fixed;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
-} */
-
 body {
   background-image: url('pics/blackjacktable.jpeg');
   color: white;
@@ -234,7 +226,13 @@ start button should be higher
 hit, stand, next, spaced, warmer yellow font
 rec button,  */
 
-
+/* html, body {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+} */
 
 
 /* 

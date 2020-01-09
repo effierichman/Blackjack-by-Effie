@@ -300,12 +300,12 @@ function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
         getWinningHand(cards, curr, i + 1, results);
         curr.pop();
       } else {
-        // try one
-        curr.push(1);
-        getWinningHand(cards, curr, i + 1, results);
-        curr.pop();
         // try eleven
         curr.push(11);
+        getWinningHand(cards, curr, i + 1, results);
+        curr.pop();
+        // try one
+        curr.push(1);
         getWinningHand(cards, curr, i + 1, results);
         curr.pop();
       }
