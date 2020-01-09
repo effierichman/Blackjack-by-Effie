@@ -1,4 +1,89 @@
+// let allConfetti = []
 
+// // confetti will be random colors picked from below array
+// let colors = ["green", "rgba(0,0,255,1)", "#ff0000"]
+
+// let fadeFallTimeOut
+
+// const prepareConfetti = () =>
+// {
+//     let amountOfConfetti = 60
+//     let confetti = document.createElement('div')
+//     for (let i = 0; i < amountOfConfetti; i++)
+//     {
+//         let newConfetti = document.createElement('div')
+//         newConfetti.classList.add('confetti')
+//         allConfetti.push(newConfetti)
+//         confetti.append(newConfetti)
+//     }
+//     document.body.append(confetti)
+// }
+
+// // from stack overflow: https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+
+// function getOffset(el)
+// {
+//     const rect = el.getBoundingClientRect();
+//     return {
+//         left: rect.left + window.scrollX,
+//         top: rect.top + window.scrollY
+//     };
+// }
+
+// const explodeConfetti = () =>
+// {
+//     resetConfetti()
+//     let radius = 200
+//     allConfetti.forEach(confetti =>
+//     {
+//         confetti.style.display = 'block'
+//         confetti.style.left = getOffset(confetti).left + Math.random() * (radius * 2) - radius + "px"
+//         confetti.style.top = getOffset(confetti).top + Math.random() * (radius * 2) - radius + "px"
+//         let rotateValue = Math.random() * 360 + 360
+//         let translateValue = Math.random() * (radius * 2) - radius
+//         confetti.style.transform = ' translate3d(0,0,' + translateValue + 'px)' + ' rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
+//         confetti.style.backgroundColor = colors[Math.round(Math.random() * (colors.length - 1))]
+//     })
+//     fadeFallTimeOut = setTimeout(fallAndFadeConfetti, 200)
+// }
+
+// const fallAndFadeConfetti = () =>
+// {
+//     allConfetti.forEach(confetti =>
+//     {
+//         confetti.style.transition = "3s"
+//         confetti.style.transitionTimingFunction = "ease-in"
+//         confetti.style.top = getOffset(confetti).top + Math.random() * 1000 + 1000 + "px"
+//         confetti.style.opacity = "0%"
+//         let rotateValue = Math.random() * 360 + 360
+//         confetti.style.transform = 'rotate3d(1, 1, 1, ' + rotateValue + 'deg)'
+//     })
+// }
+// let game = document.querySelector('.game')
+// const resetConfetti = () =>
+// {
+//     clearTimeout(fadeFallTimeOut)
+//     allConfetti.forEach(confetti =>
+//     {
+//         confetti.style.transition = '0.2s'
+//         confetti.style.display = 'none'
+//         confetti.style.left = (getOffset(game).left + 50) + "px"
+//         confetti.style.top = (getOffset(game).top + 50) + "px"
+//         confetti.style.opacity = "100%"
+//         confetti.style.transform = 'rotate3d(0)'
+//         confetti.style.transitionTimingFunction = "ease-out"
+//         confetti.style.backgroundColor = 'black'
+//     })
+// }
+
+// // Call prepare confetti when page loads
+// prepareConfetti()
+
+// call explode when you want it to go off
+// explodeConfetti()
+
+// call reset confetti before you can use it again (like maybe when a new game starts)
+//resetConfetti()
 
 let deckHolder = []
 let playerCards = []
@@ -15,11 +100,13 @@ function setScore() {
   document.querySelector('#scoreBoard1Score').innerHTML = playerScore
   document.querySelector('#scoreBoard2Score').innerHTML = dealerScore
 }
+
 // this click event will start the game
 startGane = document.querySelector('#start-button')
 startGane.addEventListener('click', startTheGame)
 function startTheGame() {
   pctText.innerHTML = ''
+  // resetConfetti()
   getCards()
 }
 
@@ -57,13 +144,12 @@ function deckToDeckHolder(deckId) {
   })
 }
 
-
 nextHand = document.querySelector('#next-hand-button')
 nextHand.addEventListener('click', handDraw)
 function handDraw() {
   pctText.innerHTML = ''
+  // resetConfetti()
   // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
-
 
   playerCards.forEach(element => {
     discardedPile.push(element)
@@ -85,38 +171,50 @@ function handDraw() {
   let pCard3 = document.querySelector('.pcard3')
   let pCard4 = document.querySelector('.pcard4')
   let pCard5 = document.querySelector('.pcard5')
+
   if (playerCards.length == 0 && dealerCards.length == 0) {
+
     if (dCard1.lastChild) {
       dCard1.removeChild(dCard1.lastChild)
     }
+
     if (dCard2.lastChild) {
       dCard2.removeChild(dCard2.lastChild)
     }
+
     if (dCard3.lastChild) {
       dCard3.removeChild(dCard3.lastChild)
     }
+
     if (dCard4.lastChild) {
       dCard4.removeChild(dCard4.lastChild)
     }
+
     if (dCard5.lastChild) {
       dCard5.removeChild(dCard5.lastChild)
     }
+
     if (pCard1.lastChild) {
       pCard1.removeChild(pCard1.lastChild)
     }
+
     if (pCard2.lastChild) {
       pCard2.removeChild(pCard2.lastChild)
     }
+
     if (pCard3.lastChild) {
       pCard3.removeChild(pCard3.lastChild)
     }
+
     if (pCard4.lastChild) {
       pCard4.removeChild(pCard4.lastChild)
     }
+
     if (pCard5.lastChild) {
       pCard5.removeChild(pCard5.lastChild)
     }
   }
+
   alert.innerHTML = ''
   console.log(discardedPile)
   console.log(deckHolder)
@@ -137,12 +235,13 @@ function handDraw() {
   console.log(dealerCardPoints)
   console.log(playerCardPoints)
   if (playerCards.length == 2 && playerCardPoints == 21) {
-    alert.innerHTML = 'You Have A BlackJack, You Win!!!'
+    alert.innerHTML = `${name} has A BlackJack, You Win!!!`
+    // explodeConfetti()
     playerScore += 1
     setScore()
   }
-
 }
+
 // setTimeout(handDraw, 1000)
 function dealerWinningHand(cards) {
   const setHand = getWinningHand(cards);
@@ -150,12 +249,6 @@ function dealerWinningHand(cards) {
     const maxHand = Math.max(...Array.from(setHand.values()));
     return maxHand;
   }
-  // console.log('dealer busts')
-  // playerScore += 1
-  // alert.innerHTML = 'Dealer Busts, Player Wins!!'
-  // setScore()
-  // return 0
-
 }
 function winningHand(cards) {
   const setHand = getWinningHand(cards);
@@ -166,10 +259,10 @@ function winningHand(cards) {
   console.log('Player Busts')
   dealerScore += 1
   setScore()
-  alert.innerHTML = 'Player Busts, Dealer Wins!!'
+  alert.innerHTML = `${name}  Busts, Dealer Wins!!`
   return 0
-
 }
+
 function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
   // reduce the hand to a number value
 
@@ -208,9 +301,6 @@ function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
   return results;
 }
 
-
-
-
 hitButton = document.querySelector('#hit-button')
 hitButton.addEventListener('click', function (event) {
   pctText.innerHTML = ''
@@ -228,8 +318,6 @@ hitButton.addEventListener('click', function (event) {
     let pCard4 = document.querySelector('.pcard4')
     let pCard5 = document.querySelector('.pcard5')
 
-    // pCard4.innerHTML = `<img src='${playerCards[3].image}'>`
-    // pCard5.innerHTML = `<img src='${playerCards[4].image}'>`
     playerCards.push(deckHolder.pop())
     setTimeout(() => {
 
@@ -263,6 +351,7 @@ standButton.addEventListener('click', function (event) {
     alert.innerHTML = 'Dealer Wins!!!'
     dealerScore += 1
     setScore()
+    return
   }
   while (dealerCardPoints <= playerCardPoints && dealerCardPoints <= 21 && dealerCardPoints !== 0 && dealerCards.length < 5) {
 
@@ -303,20 +392,11 @@ standButton.addEventListener('click', function (event) {
   console.log(playerCardPoints)
 })
 
-
-// function whoWins() {
-//this will compare the player and dealers points and declare a winner. 
-// if player busts, automatic win for dealer and visa versa
-//when round is over, update the scoreboard
-//   while (playerCardPoints > dealerCardPoints && playerCardPoints <= 21) {
-
-//   }
-// }
-
 playAgainButton = document.querySelector('#reset-button')
 playAgainButton.addEventListener('click', function (event) {
   //this will reset the entire game, the same as refreshing the page
   setTimeout(function () {
+    // resetConfetti()
     playerCards = []
     dealerCards = []
     alert.innerHTML = ''
@@ -381,73 +461,25 @@ playAgainButton.addEventListener('click', function (event) {
 }, 1000)
 
 
+// this is for the name function
+let submit = document.querySelector('#submitbutton')
+submit.addEventListener('click', nameInput)
 
-// function drawACard() {
-//   fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=52`).then(response => response.json()).then(data => console.log(data));
-//   console.log(drawCards)
-// }
-// drawACard()
-
-
-// set the initial values for player and dealer to 0
-
-// hit button: deal player a new card- update value of array; if player busts over 21, declare the dealer a winner and add a point to scoreboard
-
-//stand button: draw cards until dealer point are more than player; if bust, declare player winner and update scoreboard
-
-// Hard Hands
-
-// 5-7: Always hit
-// 8: Double if dealer shows 5 or 6, otherwise hit
-// 9: Double if dealer shows 2-6, otherwise hit
-// 10: Double if dealer shows 2-9, otherwise hit
-// 11: Always double
-// 12: Stand if dealer shows 4-6, otherwise hit
-// 13: Stand if dealer shows 2-6, otherwise hit
-// 14: Stand if dealer shows 2-6, otherwise hit
-// 15: Stand if dealer shows 2-6, hit on 7-ace
-// 16: Stand if dealer shows 2-6, hit on 7-ace
-// 17-21: Always stand
-
-// Soft Hands
-
-// A-2: Double if dealer shows 4-6, otherwise hit
-// A-3: Double if dealer shows 4-6, otherwise hit
-// A-4: Double if dealer shows 4-6, otherwise hit
-// A-5: Double if dealer shows 4-6, otherwise hit
-// A-6: Double if dealer shows 2-6, otherwise hit
-// A-7: Double if dealer shows 3-6, stand on 2,7, & 8, hit on 9, 10 & ace
-// A-8: Double if dealer shows 6, otherwise stand
-// A-9: Always stand
-// A-10: Always stand
-// Pairs:
-
-// 2-2: Split if dealer shows 3-7, otherwise hit
-// 3-3: Split if dealer shows 4-7, otherwise hit
-// 4-4: Split if dealer shows 4-6, otherwise hit
-// 5-5: Double if dealer shows 2-9, hit on 10 & ace
-// 6-6: Split if dealer shows 2-7, otherwise hit
-// 7-7: Split if dealer shows 2-7, stand on 10, hit on 8, 9 & ace
-// 8-8: Always split
-// 9-9: Split if dealer shows 2-6 and 8-9, otherwise stand
-// 10-10: Always stand
-// Ace-Ace: Always split
+function nameInput() {
+  event.preventDefault()
+  name = document.querySelector('#input-name').value
+  let scoreBoardName = document.querySelector('#scoreBoard1')
+  scoreBoardName.innerHTML = name + ':'
+  let playerHandName = document.querySelector('.playerNameInput')
+  playerHandName.innerHTML = name
+  let form = document.querySelector('.titleScreen')
+  form.style.display = 'none'
+  let game = document.querySelector('.game')
+  game.style.display = 'flex'
+}
 
 
-
-
-
-
-// let array = [
-//   //7   8   9  10  11  12
-//   ["h", "h", "h", 'h', 'h', 'h'],
-//   []
-// ]
-
-
-// array[2][13] = 
-
-
+// This is the rec button function
 // got the code idea from Ethan Jarrell https://hackernoon.com/blackjack-application-with-javascript-2c76db51dea7
 let iterations = 10000;
 let testDeck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11];
@@ -456,7 +488,7 @@ let testDeck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7
 recButton = document.querySelector('#rec-button')
 recButton.addEventListener('click', (e) => {
   let pct = determinePercent(playerCards, dealerCards[1])
-  pctText.innerHTML = `There is a ${pct} percentage chance to hit`
+  pctText.innerHTML = `${name} you have a ${pct} percent chance to hit`
 })
 
 function determinePercent(p, d) {
@@ -490,6 +522,7 @@ function determinePercent(p, d) {
   function getSum(total, num) {
     return total + num;
   }
+
   let playerSum2 = p.reduce(getSum);
   let dealerSum2 = dealerValues2.reduce(getSum);
   console.log(dealerSum2);
@@ -507,10 +540,8 @@ function determinePercent(p, d) {
   return percentageTwo;
 }
 
-// let form = document.createElement('div')
-// // form input for names 
-// form.innerHTML = "<div><h4>some stuff</div>";
-// let top1 = document.querySelector('.top')
-// top1.append(form)
-// /// once form filed out 
-// /// delete and append values to name
+function animation() {
+  let container = document.querySelector('.flip-container')
+  container.classList.add('animate')
+}
+

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Effie's Black Jack</title>
+  <title>Effie's BlackJack</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="normalize.css" type='text/css'>
@@ -12,80 +12,161 @@
 
 <body>
   <header>
-    <h1>Effie's Black Jack</h1>
+    <h1>Effie's BlackJack</h1>
   </header>
 
   <!-- This will be the player input, the scoreboard, and the reset button -->
-  <!-- <div class='top'> -->
-    <!-- <form>
-        <input id='input-name' type="text" name="name" value="Enter Name"> 
-         <input type="submit" name="submit" id="submitbutton" value="Click Here">
-      </form> -->
-    <!-- <p>Players Name</p> -->
-   
-    
-  <!-- </div> -->
+  <div class='titleScreen'>
+    <form>
+      <p>Please enter your name.</p>
+      <input id='input-name' type="text" name="name" placeholder="Enter Name">
+      <input type="submit" name="submit" id="submitbutton" value="Click Here">
+    </form>
+  </div>
 
   <!-- This will be where the deck of cards will be displayed and the buttons for turns-->
-  <div class='game'>
-    <div class='left-column'>
-      <button id='start-button'>Start Game</button>
-      <div class='deck'>
-        <p class='deck-text'>Deck</p>
-        <img class='deckPile' src="20200107_134815.jpg">
-      </div>
-      <div class='button-turn'>
-
-        <button id='hit-button'>Hit</button>
-        <button id='stand-button'>Stand</button>
-        <button id='next-hand-button'>Next Hand</button>
-      </div>
-    </div>
-
-    <div class='middle-column'>
-      <div class='scoreboard'>
-        <div id='scoreBoard1'>Player:</div>
-        <div id='scoreBoard1Score'></div>
-        <div id='scoreBoard2'>Dealer:</div>
-        <div id='scoreBoard2Score'></div>
-        <!-- <div class='text'> -->
-          <div class='scoreBoardText'></div>
-        <!-- </div> -->
+    <div class='game'>
+      <div class='left-column'>
+        <button id='start-button'>Start Game</button>
+        <div class='deck'>
+          <p class='deck-text'>Deck</p>
+          <img class='deckPile' src="20200107_134815.jpg">
+        </div>
+        <div class='button-turn'>
+          
+          <div class='hitStand'>
+            <button id='hit-button'>Hit</button>
+            <button id='stand-button'>Stand</button>
+        </div>
+            <button id='next-hand-button'>Next Hand</button>
+        </div>
       </div>
       
-      <div class='dealer' id='dealerCards'>
-        <p>Dealer</p>
-        <div class='dcard1'></div>
-        <div class='dcard2'></div>
-        <div class='dcard3'></div>
-        <div class='dcard4'></div>
-        <div class='dcard5'></div>
-      </div>
-    
-      
-
-      <div class='player' id='playerCards'>
-        <p>Player</p>
-        <div class='pcard1'></div>
-        <div class='pcard2'></div>
-        <div class='pcard3'></div>
-        <div class='pcard4'></div>
-        <div class='pcard5'></div>
+      <div class='middle-column'>
+        <div class='scoreboard'>
+          <div id='scoreBoard1'>Player:</div>
+          <div id='scoreBoard1Score'></div>
+          <div id='scoreBoard2'>Dealer:</div>
+          <div id='scoreBoard2Score'></div>
+          <!-- <div class='text'> -->
+            <div class='scoreBoardText'></div>
+            <!-- </div> -->
+          </div>
+          
+          <div class='dealer' id='dealerCards'>
+            <p>Dealer</p>
+            <div class="flip-container">
+              <div class="flipper">
+                <div class="dcard1"></div>
+                
+                <div class="back">
+                </div>
+              </div>
+            </div>
+              
+              <div class="flip-container">
+                <div class="flipper">
+                  <div class='dcard2'></div>
+                  
+                  <div class="back">
+                  </div>
+                </div>
+              </div>
+                
+                <div class="flip-container">
+                  <div class="flipper">
+                    <div class='dcard3'></div>
+                    
+                    <div class="back">
+                    </div>
+                  </div>
+                </div>
+                  
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class='dcard4'></div>
+                      
+                      <div class="back">
+                      </div>
+                    </div>
+                  </div>
+                    
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class='dcard5'></div>
+                        
+                        <div class="back">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class='dcard1'></div> -->
+                  </div>
+                  
+                  
+                  
+                  <div class='player' id='playerCards'>
+                    <p class='playerNameInput'>Player</p>
+                    
+                      
+                      <div class="flip-container">
+                        <div class="flipper">
+                          <div class='pcard1'></div>
+                          
+                          <div class="back">
+                          </div>
+                        </div>
+                      </div>
+                        
+                        <div class="flip-container">
+                          <div class="flipper">
+                            <div class='pcard2'></div>
+                            
+                            <div class="back">
+                            </div>
+                          </div>
+                        </div>
+                          
+                          <div class="flip-container">
+                            <div class="flipper">
+                              <div class='pcard3'></div>
+                              
+                              <div class="back">
+                              </div>
+                            </div>
+                          </div>
+                            
+                            <div class="flip-container">
+                              <div class="flipper">
+                                <div class='pcard4'></div>
+                                
+                                <div class="back">
+                                </div>
+                              </div>
+                            </div>
+                              
+                              <div class="flip-container">
+                                <div class="flipper">
+                                  
+                                  <div class='pcard5'></div>
+                                  <div class="back">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class='right-column'>
+                            <button id='reset-button'>Reset Score</button>
+        <div class='card-pile'>
+          <p class='card-pile-t'>Discard Pile</p>
+          <img class='deckPile' src="20200107_134815.jpg">
+        </div>
+        <button id='rec-button'>Should I Hit?</button>
+        <p class='rec-button-text'></p>
       </div>
     </div>
-    <div class='right-column'>
-      <button id='reset-button'>Reset Score</button>
-      <div class='card-pile'>
-        <p class='card-pile-t'>Discarded Pile</p>
-        <img class='deckPile' src="20200107_134815.jpg">
-      </div>
-      <button id='rec-button'>Recomendation</button>
-      <p class='rec-button-text'></p>
-    </div>
-  </div>
-  <footer>© 2020 Effie Richman</footer>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src='script.js'></script>
+    <footer>© 2020 Effie Richman</footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src='script.js'></script>
 </body>
 
 </html>

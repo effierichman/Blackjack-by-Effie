@@ -2,10 +2,20 @@
   margin: 0;
 } 
 
+html, body {
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+
 body {
   background-image: url('pics/blackjacktable.jpeg');
   color: white;
   text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
  header {
@@ -15,30 +25,18 @@ body {
 }
 
 h1 {
-font-size: 15px;
+font-size: 20px;
 padding: 10px;border-bottom: 3px solid black; 
-color: white;
+color: rgb(165, 209, 207);
+letter-spacing: 2px;
 }
 
 .deck, .card-pile {
   padding: 30px;
 }
 
-/* .top {
-  display: flex;
-  width: 100%;
-  /* text-align: center; */
-  /* justify-content: space-between; */
-  /* background-color: blue; */
-  /* height: 15%; */
-/* }  */
-
-/* .scoreBoard {
-  margin-right: 150px;
-} */
-
 .game {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
@@ -59,11 +57,38 @@ color: white;
   color: white;
 }
 
-#hit-button, #stand-button, #next-hand-button {
-  padding: 15px;
- 
+.button-turn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 120px;
+  padding-left: 90px;
 }
 
+#stand-button {
+  width: 50px;
+  height: 50px;
+  text-align: left;
+}
+  
+#hit-button {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+#next-hand-button {
+  transform: translateY(-20px);
+  width: 90px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+.hitStand {
+  margin: 0 auto;
+}
 
 #reset-button {
   background-color: red;
@@ -129,14 +154,64 @@ footer {
   width: 75px;
 }
 
-.scoreBoardText {
-  font-size: 50px;
-  color:  red;
+.scoreboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.button-turn {
-  padding-top: 50px;
+.scoreBoardText {
+  /* display: flex; */
+  height: 50px;
+  /* width: 45%; */
+  font-size: 50px;
+  color:  red;
+  line-height: 40px;
 }
+
+.rec-button-text {
+  color: yellow;
+  font-size: 25px;
+}
+
+.game {
+  border: 
+}
+
+/* .flip-container{
+  position: absolute;
+  top: 110px;
+  left: 90px;
+  height: 100px;
+  width: 130px;
+} */
+
+/* .back {
+  background-image: url('pics/20200107_134815.jpg');
+  background-size: cover;
+  height: 97px;
+  width: 75px;
+  background-repeat: no-repeat;
+} */
+/* 
+@keyframes dCard1 {
+  33% {
+    left: 0;
+    top: 0;
+  };
+  66% {
+    left: 70px;
+    right: 70px;
+  };
+  100% {
+    left: 150px;
+    top: 150px;
+  };
+} */
+
+/* .animate {
+  animation: dCard1 2s linear;
+} */
 
 /* make the font of buttons bigger 
 start button should be higher
