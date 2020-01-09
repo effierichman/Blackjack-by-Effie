@@ -18,7 +18,11 @@ Before you start any actual coding, you must meet with your Squad Leader for ~10
 
 - **Wireframes**:  
 Mobile and computer, it will be landscape on phone to have the same layout. It will just be on a smaller scale on mobile
-![wireframes]('pics/project layout.png')
+![wireframes]
+<p align="center">
+  <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578583986/projectlayout_ptp8is.png">
+</p>
+
 - **MVP**: 
 Scoreboard for player and dealer
 Reset button
@@ -46,16 +50,13 @@ Day 6: add post mvp goals
 Day 7: make everything pretty and finish post mvp goals
 
 - **Priority Matrix**: 
-![priority]('pics/Screen Shot 2020-01-02 at 2.12.13 PM.png')
-- **Timeframes**: 
-![timeframes]('pics/Screen Shot 2020-01-02 at 2.14.29 PM.png')
-
 <p align="center">
-  <img src="pics/Screen Shot 2020-01-02 at 2.12.13 PM.png">
+  <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578583985/ScreenShot2020-01-02at2.12.13_PM_ur1pdq.png">
 </p>
 
+- **Timeframes**: 
 <p align="center">
-  <img src="pics/Screen Shot 2020-01-02 at 2.14.29 PM.png">
+  <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578583985/Screen_Shot_2020-01-09_at_10.26.02_AM_bxrwut.png">
 </p>
 
 Interested in styling your README.md to make it look nice? Don't know how to include photos or create links? Check out this [Markdown Cheetsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)!
