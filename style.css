@@ -2,20 +2,20 @@
   margin: 0;
 } 
 
-html, body {
+/* html, body {
   position:fixed;
   top:0;
   bottom:0;
   left:0;
   right:0;
-}
+} */
 
 body {
   background-image: url('pics/blackjacktable.jpeg');
   color: white;
   text-align: center;
-  /* margin-left: 50px;
-  margin-right: 50px; */
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 header {
@@ -233,3 +233,24 @@ footer {
 start button should be higher
 hit, stand, next, spaced, warmer yellow font
 rec button,  */
+
+
+
+
+/* 
+@media screen and (max-width:800px)
+{
+  body {
+    background-image: none;
+    background-color: red;
+  }
+}
+
+
+@media screen and (max-width:400px)
+{
+  body {
+    background-image: none;
+    background-color: green;
+  }
+} */

@@ -59,6 +59,8 @@ Day 7: make everything pretty and finish post mvp goals
   <img src="https://res.cloudinary.com/dvmzsnvqn/image/upload/v1578584425/Screen_Shot_2020-01-09_at_10.39.30_AM_cqoe0z.png">
 </p>
 
+https://pages.git.generalassemb.ly/effierichman/Effie-s-Blackjack/
+
 Interested in styling your README.md to make it look nice? Don't know how to include photos or create links? Check out this [Markdown Cheetsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)!
 
 ### STEP 3: Make a New Repo

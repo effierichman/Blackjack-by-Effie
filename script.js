@@ -300,12 +300,12 @@ function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
         getWinningHand(cards, curr, i + 1, results);
         curr.pop();
       } else {
-        // try eleven
-        curr.push(11);
-        getWinningHand(cards, curr, i + 1, results);
-        curr.pop();
         // try one
         curr.push(1);
+        getWinningHand(cards, curr, i + 1, results);
+        curr.pop();
+        // try eleven
+        curr.push(11);
         getWinningHand(cards, curr, i + 1, results);
         curr.pop();
       }
@@ -345,6 +345,11 @@ hitButton.addEventListener('click', function (event) {
       }
       else if (playerCards.length == 5) {
         pCard5.innerHTML = `<img class='pCardImage' src='${playerCards[4].image}'>`
+      } else if (playerCards.length == 5 && playerCardPoints <= 21) {
+        alert.innerHTML = `${name} has Drawn 5 Card without Busting, You Win!!`
+        explodeConfetti()
+        playerScore += 1
+        setScore()
       }
     }, 100)
     playerCardPoints = winningHand(playerCards)
@@ -362,7 +367,7 @@ standButton.addEventListener('click', function (event) {
   if (deckHolder.length < 5) {
     getCards()
   }
-  
+
   pctText.innerHTML = ''
   let dCard1 = document.querySelector('.dcard1')
   dCard1.innerHTML = `<img class='dCardImage' src='${dealerCards[0].image}'>`
