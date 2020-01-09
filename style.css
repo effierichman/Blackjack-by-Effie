@@ -48,6 +48,14 @@ letter-spacing: 2px;
   border-color: black;
 }
 
+.names {
+  font-size: 20px;
+}
+
+.playerNameInput {
+  font-size: 20px;
+}
+
 #input-name, #submitbutton, #hit-button, #stand-button, #next-hand-button, 
 #rec-button {
   background-color: darkgreen;

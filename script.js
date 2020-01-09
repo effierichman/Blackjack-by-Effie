@@ -102,6 +102,7 @@ let playerScore = 0
 let alert = document.querySelector('.scoreBoardText')
 let pctText = document.querySelector('.rec-button-text')
 
+// this function will display all score
 function setScore() {
   document.querySelector('#scoreBoard1Score').innerHTML = playerScore
   document.querySelector('#scoreBoard2Score').innerHTML = dealerScore
@@ -155,6 +156,9 @@ nextHand.addEventListener('click', handDraw)
 function handDraw() {
   pctText.innerHTML = ''
   resetConfetti()
+  if (deckHolder.length < 5) {
+    getCards()
+  }
   // this will draw the first two cards of the deckholder array to the playercards array, and the the next two cards to the dealercards array
 
   playerCards.forEach(element => {
@@ -312,6 +316,10 @@ function getWinningHand(cards, curr = [], start = 0, results = new Set()) {
 
 hitButton = document.querySelector('#hit-button')
 hitButton.addEventListener('click', function (event) {
+  if (deckHolder.length < 5) {
+    getCards()
+  }
+
   pctText.innerHTML = ''
   // this will let the player draw additional cards until the sum is 21 or over or five card total drawn
   if (playerCardPoints < 21) {
@@ -351,6 +359,10 @@ standButton = document.querySelector('#stand-button')
 standButton.addEventListener('click', function (event) {
   //this will end the players turn and switch over to the dealercard array
   //which will hit if the dealer is less or even than the player
+  if (deckHolder.length < 5) {
+    getCards()
+  }
+  
   pctText.innerHTML = ''
   let dCard1 = document.querySelector('.dcard1')
   dCard1.innerHTML = `<img class='dCardImage' src='${dealerCards[0].image}'>`
