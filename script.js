@@ -1,3 +1,4 @@
+// This code was given to me by Trevor
 // Used by the program, don't edit these
 let allConfetti = []
 let fadeFallTimeOut
@@ -57,7 +58,7 @@ const explodeConfetti = () => {
 
 const fallAndFadeConfetti = () => {
   allConfetti.forEach(confetti => {
-    confetti.style.transition = "3s"
+    confetti.style.transition = "8s"
     confetti.style.transitionTimingFunction = "ease-in"
     confetti.style.top = getOffset(confetti).top + Math.random() * 1000 + 1000 + "px"
     confetti.style.opacity = "0%"
@@ -89,6 +90,7 @@ prepareConfetti()
 // call reset confetti before you can use it again (like maybe when a new game starts)
 //resetConfetti()
 
+//All my declerations 
 let deckHolder = []
 let playerCards = []
 let dealerCards = []
@@ -118,8 +120,7 @@ function startTheGame() {
 function getCards() {
   fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1').then(response => response.json()).then(data => {
     //calling the the decktodeckholder function and search the deckid to make sure it is the same deck that is stored in the new array
-    console.log(data)
-
+    // console.log(data)
     deckToDeckHolder(data.deck_id)
     setTimeout(handDraw, 1000)
   })
@@ -143,6 +144,7 @@ function deckToDeckHolder(deckId) {
         console.log(element.value)
       }
     })
+
     deckHolder = data.cards
     console.log(deckHolder)
   })
@@ -246,6 +248,9 @@ function handDraw() {
   }
 }
 
+
+// The following code is the functions that declare a winning had and how aces should react during any round.
+//Michael Stromer Sent me and showed me how to use recurrsion to make the aces change from a value of 11 to 1
 // setTimeout(handDraw, 1000)
 function dealerWinningHand(cards) {
   const setHand = getWinningHand(cards);
@@ -337,17 +342,15 @@ hitButton.addEventListener('click', function (event) {
     playerCardPoints = winningHand(playerCards)
 
   }
-  console.log('made it in hit card')
   console.log(playerCards)
   console.log(deckHolder)
   console.log(playerCardPoints)
 })
 
-
-
 standButton = document.querySelector('#stand-button')
 standButton.addEventListener('click', function (event) {
   //this will end the players turn and switch over to the dealercard array
+  //which will hit if the dealer is less or even than the player
   pctText.innerHTML = ''
   let dCard1 = document.querySelector('.dcard1')
   dCard1.innerHTML = `<img class='dCardImage' src='${dealerCards[0].image}'>`
@@ -381,6 +384,7 @@ standButton.addEventListener('click', function (event) {
     alert.innerHTML = 'Dealer Wins'
     dealerScore += 1
     setScore()
+    //This return stopped the dealer to recieve two points at once, because this is in a while loop and if I didn't return here, it would continue and add a point 
     return
   } else {
     alert.innerHTML = 'Player Wins'
@@ -483,17 +487,16 @@ function nameInput() {
   game.style.display = 'flex'
 }
 
-
 // This is the rec button function
 // got the code idea from Ethan Jarrell https://hackernoon.com/blackjack-application-with-javascript-2c76db51dea7
 let iterations = 10000;
 let testDeck = [2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11];
 
-
+//this function takes the value of the players cards and the dealers visible card, and funs a million iteration of the possible moves and gives you the percentage of whether you will hit and bust or hit and still win
 recButton = document.querySelector('#rec-button')
 recButton.addEventListener('click', (e) => {
   let pct = determinePercent(playerCards, dealerCards[1])
-  pctText.innerHTML = `${name} you have a ${pct} percent chance to hit`
+  pctText.innerHTML = `${name} You Have a ${pct} Percent Chance to Hit`
 })
 
 function determinePercent(p, d) {

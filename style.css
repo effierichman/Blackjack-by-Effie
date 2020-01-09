@@ -18,9 +18,8 @@ body {
   margin-right: 50px;
 }
 
- header {
+header {
   text-align: center;
-  /* background-color: beige; */
   height: 10%;
 }
 
@@ -44,7 +43,6 @@ letter-spacing: 2px;
 }
 
 #start-button {
-  /* margin-right: 170px; */
   background-color: blue;
   color: white;
   border-color: black;
@@ -163,21 +161,18 @@ footer {
 }
 
 .scoreBoardText {
-  /* display: flex; */
   height: 50px;
-  /* width: 45%; */
   font-size: 50px;
-  color:  white;
+  color:  rgb(59, 57, 204);
   line-height: 40px;
 }
-
-
 
 .rec-button-text {
   color: white;
   font-size: 25px;
 }
 
+/* setting were given to me by Trevor */
 .confetti{
   display: none;
   height: 10px;
